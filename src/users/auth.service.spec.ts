@@ -2,13 +2,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
+import { BadRequestException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
+  let fakeUsersService: Partial<UsersService>;
 
   beforeEach(async () => {
     // Create a fake copy of the users service
-    const fakeUsersService: Partial<UsersService> = {
+    fakeUsersService = {
       find: () => Promise.resolve([]),
       create: (email: string, password: string) =>
         Promise.resolve({ id: 1, email, password } as User),
@@ -38,6 +40,21 @@ describe('AuthService', () => {
     const [salt, hash] = user.password.split('.');
     expect(salt).toBeDefined();
     expect(hash).toBeDefined();
+  });
+
+  it('throws an error if user sign up with email that is in use', async (done) => {
+    fakeUsersService.find = () => Promise.resolve([{ id:1, email:'asdf', password:'1' } as User]);
     
+    // Previous version usable, now not allowed 
+    // Test functions cannot both take a 'done' callback and return something. Either use a 'done' callback, 
+    // or return a promise. Returned value: Promise {}
+    /*
+    try {
+      await service.signup('asdf@asdf.com', 'asdf')
+    } catch (error) {
+      done();
+    }
+    */
+    await expect(service.signup('asdf@asdf.com', 'asdf')).rejects.toBeInstanceOf(BadRequestException);
   });
 });
