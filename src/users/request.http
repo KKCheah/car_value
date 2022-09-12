@@ -1,0 +1,49 @@
+### get who is currently signed in now
+GET http://localhost:3000/auth/whoami
+
+### Create a new user 
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "cookie@json.com",
+  "password": "cookie"
+}
+
+### Sign-in for user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "cookie@json.com",
+  "password": "cookie"
+}
+
+### Sign-out for user
+POST http://localhost:3000/auth/signout
+
+
+
+
+### Find a user with a particular ID
+GET http://localhost:3000/auth/4
+
+### Find all users with a given email
+GET http://localhost:3000/auth?email=jason@json.com
+
+### Delete user with particular ID
+DELETE  http://localhost:3000/auth/20
+
+### Update a user
+PATCH http://localhost:3000/auth/3
+Content-Type: application/json
+
+{
+  "email": "multiply@gmail.com"
+}
+
+### set color
+GET http://localhost:3000/auth/color/green
+
+### get color
+GET http://localhost:3000/auth/color
