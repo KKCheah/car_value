@@ -6,7 +6,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "cookie@json.com",
+  "email": "cookie12@json.com",
   "password": "cookie"
 }
 
