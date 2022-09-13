@@ -54,8 +54,6 @@ describe('AuthService', () => {
   });
 
   it('throws an error if user sign up with email that is in use', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([{ id: 1, email: 'asdf', password: '1' } as User]);
 
     // Previous version usable, now not allowed
     // Test functions cannot both take a 'done' callback and return something. Either use a 'done' callback,
@@ -68,9 +66,10 @@ describe('AuthService', () => {
       done();
     }
     */
+    await service.signup('test@test.com', 'correctPassword'); 
 
     await expect(
-      service.signup('asdf@asdf.com', 'asdf'),
+      service.signup('test@test.com', 'randomPassword'),
     ).rejects.toBeInstanceOf(BadRequestException);
   });
 
@@ -81,12 +80,9 @@ describe('AuthService', () => {
   });
 
   it('throws an error when user sign-in with invalid password', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        { id: 1, email: 'test@test.com', password: 'correctPassword' } as User,
-      ]);
+    await service.signup('test@test.com', 'correctPassword');
     await expect(
-      service.signin('asdf@asdf.com', 'wrongPassword'),
+      service.signin('test@test.com', 'wrongPassword'),
     ).rejects.toBeInstanceOf(BadRequestException);
   });
 
@@ -103,6 +99,6 @@ describe('AuthService', () => {
     //   ]);
 
     await service.signup('test@test.com', 'correctPassword');
-    expect(service.signin('test@test.com', 'correctPassword1')).toBeDefined();
+    expect(service.signin('test@test.com', 'correctPassword')).toBeDefined();
   });
 });
