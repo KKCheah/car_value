@@ -80,20 +80,34 @@ describe('UsersController', () => {
 
   it('findUser throws error if user with given id not found', async () => {
     //await fakeAuthService.signup('controller@test.com', 'testtest');
-    fakeUsersService.findOne = () => null
-    expect(controller.findUser('1')).rejects.toThrowError(NotFoundException)
+    fakeUsersService.findOne = () => null;
+    expect(controller.findUser('1')).rejects.toThrowError(NotFoundException);
   });
 
-  it('findAllUsers returns a list with the give email', async () => {
+  it('findAllUsers returns a list with the given email', async () => {
     // await fakeAuthService.signup('controller@test.com', 'testtest');
     const users = await controller.findAllUsers('controller@test.com');
     expect(users.length).toEqual(1);
     expect(users[0].email).toEqual('controller@test.com');
   });
 
+  it('findAllUsers returns a list of blank if no email is found', async () => {
+    fakeUsersService.find = () => Promise.resolve([]);
+    const users = await controller.findAllUsers('controller@test.com');
+    expect(users.length).toEqual(0);
+  });
 
-  // it('should return error with non existent id', async () => {
-  //   fakeUsersService.find = () => {}
-  //   await expect(controller.findUser('5')).rejects.toThrowError(NotFoundException);
-  // })
+  it('signInUser updates session object and returns a user', async () => {
+    const session = {userId: -10};
+    const user = await controller.signinUser(
+      { email: 'testSignIn@gmail.com', password: 'testsignin' },
+      session,
+    );
+    expect(user.id).toEqual(1);
+    expect(user.email).toEqual('testSignIn@gmail.com');
+    expect(user.password).toEqual('testsignin');
+    expect(user).toBeDefined();
+    expect(session.userId).toEqual(1)
+  });
+
 });
