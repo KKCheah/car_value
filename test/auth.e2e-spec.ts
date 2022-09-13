@@ -16,7 +16,7 @@ describe('Authentication (e2e)', () => {
   });
 
   it('handles signup request', () => {
-    const email = 'uniqueTst@gmail.com'
+    const email = 'uniqueTest6@gmail.com'
     return request(app.getHttpServer())
       .post('/auth/signup')
       .send({ email, password: 'unique' })
@@ -28,4 +28,5 @@ describe('Authentication (e2e)', () => {
         expect(email).toEqual(email)
       });
   });
+
 });
