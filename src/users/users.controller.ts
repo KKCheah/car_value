@@ -22,7 +22,7 @@ import { userDto } from './dtos/userDto';
 import { CurrentUser } from './decorators/current-user.decorator';
 // import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 import { User } from './user.entity';
-import { AuthGuard } from '../guards/auth.guards';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 @Serialize(userDto)
