@@ -1,0 +1,23 @@
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+  "make": "Mitsubishi Admin v2",
+  "model": "Lancer Evo",
+  "year": 1996,
+  "mileage": 100000,
+  "lng": 0,
+  "lat": 0,
+  "price": 200000
+}
+
+### Approve vehicle of user
+PATCH  http://localhost:3000/reports/4
+Content-Type: application/json
+
+{
+  "approved": true
+}
+
+### Get an estimate for the existing vehicle
+GET http://localhost:3000/reports?make=toyota&model=corolla&lng=0&lat=0&mileage=20000&year=1980
