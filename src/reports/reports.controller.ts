@@ -9,6 +9,7 @@ import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { approveReportDto } from './dtos/approveReport.dto';
 import { AdminGuard } from 'src/guards/admin.guard';
 import { getEstimateDto } from './dtos/getEstimate.dto';
+import { query } from 'express';
 
 @Controller('reports')
 export class ReportsController {
@@ -28,5 +29,7 @@ export class ReportsController {
   }
 
   @Get()
-  getEstimate(@Query() body: getEstimateDto){}
+  getEstimate(@Query() body: getEstimateDto){
+    console.log(body)
+  }
 }
