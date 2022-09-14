@@ -1,0 +1,12 @@
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+  "make": "Mitsubishi",
+  "model": "Lancer Evo",
+  "year": 1996,
+  "mileage": 100000,
+  "lng": 0,
+  "lat": 0,
+  "price": 200000
+}
