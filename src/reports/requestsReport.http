@@ -2,17 +2,17 @@ POST http://localhost:3000/reports
 Content-Type: application/json
 
 {
-  "make": "Mitsubishi Admin v2",
-  "model": "Lancer Evo",
-  "year": 1996,
-  "mileage": 100000,
-  "lng": 0,
-  "lat": 0,
-  "price": 200000
+  "make": "Mazda",
+  "model": "RX9",
+  "year": 2002,
+  "mileage": 1000,
+  "lng": 42,
+  "lat":42,
+  "price": 37500
 }
 
 ### Approve vehicle of user
-PATCH  http://localhost:3000/reports/4
+PATCH  http://localhost:3000/reports/14
 Content-Type: application/json
 
 {
@@ -20,4 +20,4 @@ Content-Type: application/json
 }
 
 ### Get an estimate for the existing vehicle
-GET http://localhost:3000/reports?make=toyota&model=corolla&lng=0&lat=0&mileage=20000&year=1980
+GET http://localhost:3000/reports?make=Mazda&model=RX9&lng=40&lat=40&mileage=20000&year=2000
