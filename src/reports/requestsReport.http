@@ -4,15 +4,15 @@ Content-Type: application/json
 {
   "make": "Mazda",
   "model": "RX9",
-  "year": 2001,
-  "mileage": 18000,
+  "year": 2002,
+  "mileage": 1000,
   "lng": 42,
   "lat":42,
-  "price": 15000
+  "price": 37500
 }
 
 ### Approve vehicle of user
-PATCH  http://localhost:3000/reports/4
+PATCH  http://localhost:3000/reports/14
 Content-Type: application/json
 
 {
@@ -20,4 +20,4 @@ Content-Type: application/json
 }
 
 ### Get an estimate for the existing vehicle
-GET http://localhost:3000/reports?make=Toyota&model=Corolla&lng=0&lat=0&mileage=20000&year=1997
+GET http://localhost:3000/reports?make=Mazda&model=RX9&lng=40&lat=40&mileage=20000&year=2000
